@@ -15,30 +15,43 @@ const Toast = () => {
     ToastFormContext
   );
   const [list, setList] = useState(toastList);
-  const [progress, setProgress] = useState(100);
+  const [timer, setTimer] = useState(0);
+  const [focusedToast, setFocusedToast] = useState(null);
   useEffect(() => {
     setList([...toastList]);
   }, [toastList]);
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (toastList.length && list.length) {
-        deleteToast(0);
-        setProgress(progress + 10);
-      }
-    }, toastDelay);
-
+    const steps = setInterval(() => {
+      setToastList(
+        toastList.map((toast,i) => {
+          if (toast.timer >= toastDelay) {
+            deleteToast(i);
+            return;
+          } else if (toast.id !== focusedToast) {
+            toast.timer = toast.timer + 1000;
+            return toast;
+          } else {
+            return toast;
+          }
+        })
+      );
+      console.log("1sec");
+      setTimer(timer + 1);
+    }, 1000);
     return () => {
-      clearInterval(interval);
+      clearInterval(steps);
     };
-  }, [toastList, toastDelay, list]);
+  }, [timer]);
   const deleteToast = (index) => {
     setToastList(index);
     setList([...list.filter((_, i) => i !== index)]);
   };
-  const stopToastTime = () => {
-    console.log("mouseenter");
+  const stopToastTime = (index) => {
+    setFocusedToast(index);
+    console.log("mouseenter", index);
   };
   const restartToastTimer = () => {
+    setFocusedToast(null);
     console.log("mouseleave");
   };
   return (
@@ -48,7 +61,7 @@ const Toast = () => {
           key={i}
           type={toast.type}
           position={toastPosition}
-          onMouseEnter={() => stopToastTime()}
+          onMouseEnter={() => stopToastTime(toast.id)}
           onMouseLeave={() => restartToastTimer()}
         >
           <ToastButton type={toast.type} onClick={() => deleteToast(i)}>
@@ -61,7 +74,10 @@ const Toast = () => {
             <ToastTitle>{toast.title}</ToastTitle>
             <ToastContent>{toast.content}</ToastContent>
           </div>
-          <ProgressBar type={toast.type} width={progress}></ProgressBar>
+          <ProgressBar
+            type={toast.type}
+            width={((toast.timer / 1000) * 100) / (toastDelay / 1000)}
+          ></ProgressBar>
         </ToastContainer>
       ))}
     </ToastWrapper>

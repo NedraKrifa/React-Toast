@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import ToastFormContext from "./ToastFormContext";
-import { toastTypes } from "../../Utils/toastTypes"
+import { toastTypes } from "../../Utils/toastTypes";
 
 class ToastFormProvider extends Component {
   state = {
     toastList: [],
-    toastPosition: "",
-    toastType: "",
+    toastPosition: "top-right",
+    toastType: "default",
     toastDelay: 5000,
+    id: 0,
   };
   handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -17,9 +18,12 @@ class ToastFormProvider extends Component {
   };
   showToast = (e) => {
     e.preventDefault();
-    const {toastList,toastType}=this.state;
+    const { toastList, toastType } = this.state;
     this.setState({
-      toastList: [...toastList,toastTypes[toastType]],
+      toastList: [
+        ...toastList,
+        { ...toastTypes[toastType], timer: 0, id: toastList.length + 1 },
+      ],
     });
   };
   clearAllToast = (e) => {
@@ -28,12 +32,12 @@ class ToastFormProvider extends Component {
       toastList: [],
     });
   };
-  setToastList=(index)=>{
-    const {toastList}=this.state;
+  setToastList = (index) => {
+    const { toastList } = this.state;
     this.setState({
-      toastList: [...toastList.filter((_,i) => i !== index)],
-    })
-  }
+      toastList: [...toastList.filter((_, i) => i !== index)],
+    });
+  };
 
   render() {
     return (

@@ -28,6 +28,7 @@ export default function ToastForm() {
                     <InputRadio
                       type="radio"
                       name="toastPosition"
+                      checked={context.toastPosition === position }
                       value={position}
                       onChange={(e) => context.handleFormChange(e)}
                     />
@@ -45,6 +46,7 @@ export default function ToastForm() {
                       <InputRadio
                         type="radio"
                         name="toastType"
+                        checked={context.toastType === type}
                         value={type}
                         onChange={(e) => context.handleFormChange(e)}
                       />
