@@ -11,7 +11,7 @@ import {
 import ToastFormContext from "../Contexts/ToastFormContext/ToastFormContext";
 
 const Toast = () => {
-  const { setToastList, toastList, toastPosition, toastDelay } = useContext(
+  const { changeToastList, toastList, toastPosition, toastDelay } = useContext(
     ToastFormContext
   );
   const [list, setList] = useState(toastList);
@@ -22,8 +22,8 @@ const Toast = () => {
   }, [toastList]);
   useEffect(() => {
     const steps = setInterval(() => {
-      setToastList(
-        toastList.map((toast,i) => {
+      changeToastList(
+        toastList.map((toast, i) => {
           if (toast.timer >= toastDelay) {
             deleteToast(i);
             return;
@@ -43,7 +43,7 @@ const Toast = () => {
     };
   }, [timer]);
   const deleteToast = (index) => {
-    setToastList(index);
+    changeToastList(index);
     setList([...list.filter((_, i) => i !== index)]);
   };
   const stopToastTime = (index) => {

@@ -8,7 +8,6 @@ class ToastFormProvider extends Component {
     toastPosition: "top-right",
     toastType: "default",
     toastDelay: 5000,
-    id: 0,
   };
   handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +31,7 @@ class ToastFormProvider extends Component {
       toastList: [],
     });
   };
-  setToastList = (index) => {
+  changeToastList = (index) => {
     const { toastList } = this.state;
     this.setState({
       toastList: [...toastList.filter((_, i) => i !== index)],
@@ -50,7 +49,7 @@ class ToastFormProvider extends Component {
           handleFormChange: this.handleFormChange,
           showToast: this.showToast,
           clearAllToast: this.clearAllToast,
-          setToastList: this.setToastList,
+          changeToastList: this.changeToastList,
         }}
       >
         {this.props.children}

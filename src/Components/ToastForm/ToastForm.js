@@ -10,7 +10,14 @@ import {
 export default function ToastForm() {
   return (
     <ToastFormContext.Consumer>
-      {(context) => (
+      {({
+        toastPosition,
+        toastDelay,
+        toastType,
+        handleFormChange,
+        showToast,
+        clearAllToast,
+      }) => (
         <form>
           <FormGroupRadio>
             <div>
@@ -28,9 +35,9 @@ export default function ToastForm() {
                     <InputRadio
                       type="radio"
                       name="toastPosition"
-                      checked={context.toastPosition === position }
+                      checked={toastPosition === position}
                       value={position}
-                      onChange={(e) => context.handleFormChange(e)}
+                      onChange={(e) => handleFormChange(e)}
                     />
                     <label>{position}</label>
                   </div>
@@ -46,9 +53,9 @@ export default function ToastForm() {
                       <InputRadio
                         type="radio"
                         name="toastType"
-                        checked={context.toastType === type}
+                        checked={toastType === type}
                         value={type}
-                        onChange={(e) => context.handleFormChange(e)}
+                        onChange={(e) => handleFormChange(e)}
                       />
                       <label>{type}</label>
                     </div>
@@ -62,22 +69,22 @@ export default function ToastForm() {
             <Input
               type="number"
               name="toastDelay"
-              value={context.toastDelay}
+              value={toastDelay}
               placeholder="Your Toast delay"
               min="0"
-              onChange={(e) => context.handleFormChange(e)}
+              onChange={(e) => handleFormChange(e)}
             />
           </FormNumber>
           <Button
             type="submit"
             value="Show Toast"
-            toastType={context.toastType}
-            onClick={(e) => context.showToast(e)}
+            toastType={toastType}
+            onClick={(e) => showToast(e)}
           />
           <Button
             type="submit"
             value="Clear All"
-            onClick={(e) => context.clearAllToast(e)}
+            onClick={(e) => clearAllToast(e)}
           />
         </form>
       )}
