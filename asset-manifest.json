@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/React-Toast/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/React-Toast/static/js/main.09383410.chunk.js",
+    "main.js.map": "/React-Toast/static/js/main.09383410.chunk.js.map",
+    "runtime-main.js": "/React-Toast/static/js/runtime-main.9dec9ebc.js",
+    "runtime-main.js.map": "/React-Toast/static/js/runtime-main.9dec9ebc.js.map",
+    "static/js/2.eec35613.chunk.js": "/React-Toast/static/js/2.eec35613.chunk.js",
+    "static/js/2.eec35613.chunk.js.map": "/React-Toast/static/js/2.eec35613.chunk.js.map",
+    "index.html": "/React-Toast/index.html",
+    "precache-manifest.ad34fda94af5f8ea08cc7ca13f146171.js": "/React-Toast/precache-manifest.ad34fda94af5f8ea08cc7ca13f146171.js",
+    "service-worker.js": "/React-Toast/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/React-Toast/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.eec35613.chunk.js.LICENSE.txt": "/React-Toast/static/js/2.eec35613.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9dec9ebc.js",
+    "static/js/2.eec35613.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.09383410.chunk.js"
+  ]
+}
