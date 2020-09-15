@@ -7,3 +7,6 @@ A Toast app built with reactjs using Classes, React Hooks, styled-components,Con
 ![Toast Form](/public/assets/reactToastApp.PNG)
 
 ![Toast App](/public/assets/reactToast.PNG)
+
+## Demo
+DEMO [HERE](https://nedrakrifa.github.io/React-Toast/)
